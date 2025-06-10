@@ -23,7 +23,7 @@ const generateSessionSecret = () => {
 };
 
 // Configuration
-const MONGODB_URI = 'mongodb://localhost:27017/NutriConnectDB';
+const MONGODB_URI = process.env.MONGODB_URI;
 const SESSION_SECRET = process.env.SESSION_SECRET || generateSessionSecret();
 
 // Log the generated secret (remove in production)
