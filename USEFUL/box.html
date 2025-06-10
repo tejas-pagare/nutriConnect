@@ -1,0 +1,119 @@
+
+<style>
+
+    .user-guide-section {
+        position: relative;
+        top: 450px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap:50px;
+        width: 100%;
+        margin: 50px auto;
+        padding: 40px;
+        background: #fff;
+        border-radius: 15px;
+        border: 6px double #4CAF50;
+        
+    }
+    
+
+    .user-guide-section .content {
+        flex: 1;
+        padding-right: 40px;
+    }
+    .user-guide-section h2 {
+        color: #4CAF50;
+        margin-bottom: 20px;
+        font-size: 50px; /* Increased font size */
+        font-weight: bold;
+       
+    }
+
+    .user-guide-section p {
+        line-height: 1.8;
+        color: #555;
+        margin-bottom: 20px;
+        font-size: 18px; /* Increased font size */
+    }
+    .user-guide-section ul {
+        list-style-type: none;
+        padding: 0;
+    }
+    .user-guide-section ul li {
+        margin-bottom: 10px;
+        padding-left: 20px;
+        position: relative;
+        font-size: 18px; /* Increased font size */
+        color: #555;
+    }
+    .user-guide-section ul li::before {
+        content: "•";
+        color: #4CAF50;
+        font-size: 24px; /* Increased bullet size */
+        position: absolute;
+        left: 0;
+        top: -2px;
+    }
+    .guide-button {
+        padding: 14px 28px;
+        font-size: 18px; /* Increased font size */
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-weight: bold;
+        
+    }
+    .guide-button:hover {
+        background-color: #45a049;
+        transform: translateY(-2px);
+    }
+    .user-guide-section .image-container {
+        flex: 1;
+        text-align: right;
+        border-radius: 15px;
+        overflow: hidden;
+        
+        
+    }
+    .user-guide-section .image-container img {
+        height: auto;
+        display: block;
+      
+    }
+</style>
+
+<div class="user-guide-section">
+
+     <!-- Image Section -->
+     <div class="image-container">
+      <img src="https://media.istockphoto.com/id/1439477915/vector/website-under-construction-tiny-people-build-update-structure-of-site-create-content.jpg?s=612x612&w=0&k=20&c=7el8OkeFrJGsRjXZXezKLKsAcOC86sX_Iw_RJ8O_N_U=" alt="User Guide Image">
+  </div>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h2>User Guide</h2>
+        <p>
+            Our User Guide is designed to help you make the most of our platform. Whether you're new to the system or looking for advanced tips, this guide has everything you need:
+        </p>
+        <ul>
+            <li>Step-by-step instructions for setting up your profile.</li>
+            <li>How to track your meals and fitness goals.</li>
+            <li>Tips for connecting with dietitians and nutritionists.</li>
+            <li>Frequently asked questions and troubleshooting.</li>
+        </ul>
+        <button class="guide-button" onclick="redirectToUserGuide()">Go to User Guide</button>
+    </div>
+
+   
+</div>
+
+<script>
+    // Function to redirect to the User Guide page
+    function redirectToUserGuide() {
+        window.location.href = "guide_user.html"; // Replace with the actual path to the User Guide page
+    }
+</script>

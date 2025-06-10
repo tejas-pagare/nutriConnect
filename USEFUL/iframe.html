@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Page Navigation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px;
+        }
+        nav button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        nav button:hover {
+            background-color: #575757;
+        }
+        .main-section {
+            padding: 20px;
+        }
+        iframe {
+            width: 100%;
+            border: none;
+            display: none;
+            min-height: 500px; /* Ensures no blank space on small pages */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <button onclick="showHome()">HOME</button>
+        <button onclick="loadPage('/user-guide')">GUIDE</button>
+        <button onclick="loadPage('/user-lab')">MEDICAL REPORTS</button>
+        <button onclick="loadPage('/appointments')">APPOINTMENTS</button>
+        <button onclick="loadPage('/pricing')">PRICING</button>
+    </nav>
+
+    <!-- Default Home Content -->
+    <main class="main-section">
+        <h1>Welcome to the Home Page</h1>
+        <p>This is the default main section content.</p>
+    </main>
+
+    <!-- Iframe for Loading Pages -->
+    <iframe id="contentFrame"></iframe>
+
+    <script>
+        function loadPage(route) {
+            document.querySelector('.main-section').style.display = "none";  // Hide main section
+            let iframe = document.getElementById('contentFrame');
+            iframe.src = route;
+            iframe.style.display = "block";  // Show iframe
+        }
+
+        function showHome() {
+            document.querySelector('.main-section').style.display = "block"; // Show main section
+            document.getElementById('contentFrame').style.display = "none";   // Hide iframe
+        }
+
+        window.addEventListener("message", function(event) {
+            if (event.data.iframeHeight) {
+                let iframe = document.getElementById("contentFrame");
+                iframe.style.height = event.data.iframeHeight + 50 + "px"; // Extra 50px space
+            }
+        });
+    </script>
+
+</body>
+</html>

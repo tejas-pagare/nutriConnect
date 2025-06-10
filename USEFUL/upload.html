@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload File</title>
+</head>
+<body>
+
+    <h2>Upload a File</h2>
+    <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+            
+            const formData = new FormData();
+            formData.append("file", document.getElementById("fileInput").files[0]);
+
+            const response = await fetch("http://localhost:3000/upload", {
+                method: "POST",
+                body: formData
+            });
+
+            if (response.ok) {
+                window.location.href = "index.html"; // Redirect to home page after upload
+            } else {
+                alert("Upload failed!");
+            }
+        });
+    </script>
+
+</body>
+</html>
