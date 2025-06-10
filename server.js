@@ -1,6 +1,4 @@
-require('dotenv').config({ 
-  path: require('path').join(__dirname, 'utils', '.env') 
-});
+
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -15,7 +13,9 @@ const connectDB = require('./utils/db'); // Import MongoDB connection from db.js
 
 const app = express();
 const PORT = process.env.PORT || 3500;
-
+require('dotenv').config({ 
+  
+});
 
 // Generate a strong 64-byte hex session secret
 const generateSessionSecret = () => {
@@ -31,6 +31,7 @@ if (!process.env.SESSION_SECRET) {
   console.log('\n🔑 Generated Session Secret:', SESSION_SECRET);
   console.log('⚠️  For production, set SESSION_SECRET in .env file instead!');
 }
+
 
 
 // Session Configuration
@@ -64,8 +65,6 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
-
-connectDB();
 
 
 // Import routes
@@ -117,12 +116,14 @@ app.use('/', blogRoutes);
 app.use('/', crudRoutes);
 app.use('/', profileRoutes);
 
-// Display all routes
-const expressListEndpoints = require('express-list-endpoints');
-console.log(expressListEndpoints(app));
 
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log(`✅ MongoDB connected`);  
+    console.log(`🚀 Server is running at http://localhost:${PORT}`);
+  });
+}).catch((err) => {
+  console.error('❌ MongoDB connection failed:', err);
+  process.exit(1); // Stop the app if DB connection fails
 });
